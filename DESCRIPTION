@@ -9,7 +9,7 @@ Description: This package provides different methods for identifying relevant
     approaches: empirical and parametric permutation (Altmann), Boruta, Vita,
     r2VIM (recurrent relative veriable importance), and RFE (recursive feature
     elimination). All approaches use unscaled permutation variable importance and
-    the R packages parallelRandomForest or ranger to generate the forests. The
+    the R package ranger to generate the forests. The
     package also includes a function to simulate correlated gene expression data.
 Depends:
     R (>= 3.3.1)
