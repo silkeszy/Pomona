@@ -4,8 +4,16 @@
 \alias{holdout.rf}
 \title{Helper function for variable selection using Vita approach.}
 \usage{
-holdout.rf(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-  no.threads = 1, type = "regression")
+holdout.rf(
+  x,
+  y,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  type = "regression",
+  importance = importance
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -36,4 +44,3 @@ R package \code{\link[ranger]{ranger}}.
 \references{
 Janitza, S., Celik, E. & Boulesteix, A.-L., (2015). A computationally fast variable importance test for random forest for high dimensional data, Technical Report 185, University of Munich, https://epub.ub.uni-muenchen.de/25587.
 }
-

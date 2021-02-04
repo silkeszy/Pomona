@@ -4,9 +4,20 @@
 \alias{var.sel.rfe}
 \title{Variable selection using recursive feature elimination.}
 \usage{
-var.sel.rfe(x, y, prop.rm = 0.2, recalculate = TRUE, tol = 10,
-  ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-  method = "ranger", type = "regression")
+var.sel.rfe(
+  x,
+  y,
+  prop.rm = 0.2,
+  recalculate = TRUE,
+  tol = 10,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  importance = "impurity_corrected"
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -33,6 +44,9 @@ nodes.}
 \item{method}{implementation to be used ("ranger").}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
+
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 }
 \value{
 List with the following components:
@@ -68,4 +82,3 @@ Note: This function differs from the approach implemented in the R package
 \code{\link[varSelRF]{varSelRF}} because it recalculates importance scores in each step. The tolerance step is based on the
 \code{pickSizeTolerance} function in the R package \code{caret}.
 }
-

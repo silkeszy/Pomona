@@ -36,4 +36,3 @@ rf = wrapper.rf(x = data[, -1], y = data[, 1],
 # error
 calculate.error(rf = rf, true = data[, 1])
 }
-

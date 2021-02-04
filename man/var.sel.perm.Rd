@@ -4,9 +4,20 @@
 \alias{var.sel.perm}
 \title{Variable selection using a permutation approach.}
 \usage{
-var.sel.perm(x, y, no.perm = 100, p.t = 0, ntree = 500, mtry.prop = 0.2,
-  nodesize.prop = 0.1, no.threads = 1, method = "ranger",
-  type = "regression", parametric = FALSE)
+var.sel.perm(
+  x,
+  y,
+  no.perm = 100,
+  p.t = 0,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  parametric = FALSE,
+  importance = "impurity_corrected"
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -34,6 +45,9 @@ nodes.}
 
 \item{parametric}{logical stating if parametric permutation approach of Altmann et al. 2010 (based on normal
 distribution) should be used (default: FALSE)}
+
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 }
 \value{
 List with the following components:
@@ -75,4 +89,3 @@ res$var
 res.par = var.sel.perm(x = data[, -1], y = data[, 1], no.perm = 10, p.t = 0.05, parametric = TRUE)
 res.par$var
 }
-

@@ -4,9 +4,18 @@
 \alias{var.sel.vita}
 \title{Variable selection using Vita approach.}
 \usage{
-var.sel.vita(x, y, p.t = 0.05, ntree = 500, mtry.prop = 0.2,
-  nodesize.prop = 0.1, no.threads = 1, method = "ranger",
-  type = "regression")
+var.sel.vita(
+  x,
+  y,
+  p.t = 0.05,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  importance = "impurity_corrected"
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -29,6 +38,9 @@ nodes.}
 \item{method}{implementation to be used ("ranger").}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
+
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 }
 \value{
 List with the following components:
@@ -60,4 +72,3 @@ This function calculates p-values based on the empirical null distribution from 
 described in Janitza et al. (2015). Note that this function uses the \code{importance_pvalues} function in the R package
 \code{\link[ranger]{ranger}}.
 }
-

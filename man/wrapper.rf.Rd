@@ -4,8 +4,18 @@
 \alias{wrapper.rf}
 \title{Wrapper function to call random forests function.}
 \usage{
-wrapper.rf(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-  no.threads = 1, method = "ranger", type = "regression", ...)
+wrapper.rf(
+  x,
+  y,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  importance = "impurity_corrected",
+  ...
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -27,6 +37,9 @@ nodes.}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
 
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
+
 \item{...}{further arguments needed for \code{\link[relVarId]{holdout.rf}} function only.}
 }
 \value{
@@ -45,4 +58,3 @@ data = simulation.data.cor(no.samples = 100, group.size = rep(10, 6), no.var.tot
 wrapper.rf(x = data[, -1], y = data[, 1],
            type = "regression", method = "ranger")
 }
-

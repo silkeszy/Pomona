@@ -4,9 +4,19 @@
 \alias{var.sel.r2vim}
 \title{Variable selection using recurrent relative variable importance (r2VIM).}
 \usage{
-var.sel.r2vim(x, y, no.runs = 10, factor = 1, ntree = 500,
-  mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-  method = "ranger", type = "regression")
+var.sel.r2vim(
+  x,
+  y,
+  no.runs = 10,
+  factor = 1,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  importance = "impurity_corrected"
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -31,6 +41,9 @@ nodes.}
 \item{method}{implementation to be used ("ranger").}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
+
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 }
 \value{
 List with the following components:
@@ -64,4 +77,3 @@ if the minimal relative importance score is >= factor.
 \details{
 Note: This function is a reimplementation of the R package \code{RFVarSelGWAS}.
 }
-

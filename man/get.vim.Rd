@@ -15,4 +15,3 @@ numeric vector with importance value for each variable (in original order)
 \description{
 Extracts variable importance depending on class of random forest object.
 }
-

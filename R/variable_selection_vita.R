@@ -36,12 +36,12 @@
 
 var.sel.vita <- function(x, y, p.t = 0.05,
                             ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-                            no.threads = 1, method = "ranger", type = "regression") {
+                            no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected") {
 
   ## train holdout RFs
   res.holdout = holdout.rf(x = x, y = y,
                            ntree = ntree, mtry.prop = mtry.prop, nodesize.prop = nodesize.prop,
-                           no.threads = no.threads, type = type)
+                           no.threads = no.threads, type = type,  importance = importance)
 
   ## variable selection using importance_pvalues function
   res.janitza = ranger::importance_pvalues(x = res.holdout,
@@ -81,7 +81,7 @@ var.sel.vita <- function(x, y, p.t = 0.05,
 #' Janitza, S., Celik, E. & Boulesteix, A.-L., (2015). A computationally fast variable importance test for random forest for high dimensional data, Technical Report 185, University of Munich, https://epub.ub.uni-muenchen.de/25587.
 
 holdout.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-                       type = "regression") {
+                       type = "regression", importance = importance) {
 
   ## define two cross-validation folds
   n = nrow(x)
@@ -93,13 +93,13 @@ holdout.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, 
                               nodesize.prop = nodesize.prop, no.threads = no.threads,
                               method = "ranger", type = type,
                               case.weights = weights, replace = FALSE,
-                              holdout = TRUE),
+                              holdout = TRUE, importance = importance),
              rf2 = wrapper.rf(x = x, y = y,
                               ntree = ntree, mtry.prop = mtry.prop,
                               nodesize.prop = nodesize.prop, no.threads = no.threads,
                               method = "ranger", type = type,
                               case.weights = 1 - weights, replace = FALSE,
-                              holdout = TRUE))
+                              holdout = TRUE,  importance = importance))
 
   ## calculate mean VIM
   res$variable.importance = (res$rf1$variable.importance +

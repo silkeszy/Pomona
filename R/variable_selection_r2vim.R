@@ -37,7 +37,7 @@
 #' @export
 
 var.sel.r2vim <- function(x, y, no.runs = 10, factor = 1, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-                          no.threads = 1, method = "ranger", type = "regression") {
+                          no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected") {
 
   ## importance for each run
   imp.all = NULL
@@ -45,7 +45,7 @@ var.sel.r2vim <- function(x, y, no.runs = 10, factor = 1, ntree = 500, mtry.prop
     print(paste("run", r))
     rf = wrapper.rf(x = x, y = y,
                     ntree = ntree, mtry.prop = mtry.prop, nodesize.prop = nodesize.prop, no.threads = no.threads,
-                    method = method, type = type)
+                    method = method, type = type, importance = importance)
     imp.all = cbind(imp.all, get.vim(rf))
   }
 

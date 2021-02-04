@@ -16,6 +16,8 @@
 #' @param no.threads number of threads used for parallel execution.
 #' @param method implementation to be used ("ranger").
 #' @param type mode of prediction ("regression", "classification" or "probability").
+#' @param importance Variable importance mode ('none', 'impurity',
+#' 'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.
 #' @param ... further arguments needed for \code{\link[relVarId]{holdout.rf}} function only.
 #'
 #' @return An object of class \code{\link[ranger]{ranger}}.
@@ -33,7 +35,7 @@
 #'            type = "regression", method = "ranger")
 
 wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-                       method = "ranger", type = "regression", ...) {
+                       method = "ranger", type = "regression", importance = "impurity_corrected",...) {
 
   ## check data
   if (length(y) != nrow(x)) {
@@ -54,7 +56,7 @@ wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, 
   if (mtry == 0) mtry = 1
 
   if (type == "classification") {
-#    print("in classification")
+    #    print("in classification")
     y = as.factor(y)
   }
 
@@ -70,7 +72,7 @@ wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, 
     rf = ranger::ranger(data = data.frame(y, x),
                         dependent.variable.name = "y",
                         probability = prob,
-                        importance = "permutation", scale.permutation.importance = FALSE,
+                        importance = importance, scale.permutation.importance = FALSE,
                         num.trees = ntree,
                         mtry = mtry,
                         min.node.size = nodesize,
@@ -97,7 +99,6 @@ wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, 
 #' @param true vector with true value for each sample
 #' @param test.set matrix or data.frame of predictor variables for test set with variables in
 #'   columns and samples in rows (Note: missing values are not allowed)
-#' @inheritParams wrapper.rf
 #'
 #' @return numeric vector with two elements for regression and probability estimation (rmse, rsq) and
 #' five elements for classification (acc, err, mcc, sens, spec)

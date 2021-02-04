@@ -37,4 +37,3 @@ predictor variables are simulated.
 data = simulation.data.cor(no.samples = 100, group.size = rep(10, 6), no.var.total = 200)
                      
 }
-

@@ -48,12 +48,12 @@
 
 var.sel.perm <- function(x, y, no.perm = 100, p.t = 0, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
                          no.threads = 1, method = "ranger", type = "regression",
-                         parametric = FALSE) {
+                         parametric = FALSE, importance = "impurity_corrected") {
 
   ## importance for original data
   rf = wrapper.rf(x = x, y = y,
                   ntree = ntree, mtry.prop = mtry.prop, nodesize.prop = nodesize.prop, no.threads = no.threads,
-                  method = method, type = type)
+                  method = method, type = type, importance = importance)
   imp = get.vim(rf)
 
   ## importance for permutated data
@@ -67,7 +67,7 @@ var.sel.perm <- function(x, y, no.perm = 100, p.t = 0, ntree = 500, mtry.prop = 
     rf.perm = wrapper.rf(x = x, y = y.perm,
                          ntree = ntree, mtry.prop = mtry.prop, nodesize.prop = nodesize.prop,
                          no.threads = no.threads,
-                         method = method, type = type)
+                         method = method, type = type, importance = importance)
     get.vim(rf.perm)
   })
 

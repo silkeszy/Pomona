@@ -37,17 +37,25 @@
 #'
 #' @export
 
+
 var.sel.boruta <- function(x, y, pValue = 0.01, maxRuns = 100,
                           ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-                          no.threads = 1, method = "ranger", type = "regression") {
+                          no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected") {
 
   ## variable selection using Boruta function
   ## ----------------------------------------
-  ## mtry.prop not used
+  # modified version of getImpRfRaw function to enable user defined mtry
+  # values
+  get.imp.r.f.raw.mtry <- function(x, y, ...) {
+    rf <- wrapper.rf(x = x, y = y, ...)
+    return(rf$variable.importance)
+  }
+
   res.boruta = Boruta::Boruta(x = x, y = y,
                               pValue = pValue, maxRuns = maxRuns,
-                              ntree = ntree, min.node.size = floor(nodesize.prop * nrow(x)),
-                              num.threads = no.threads)
+                              ntree = ntree, nodesize.prop = nodesize.prop,
+                              no.threads = no.threads,mtry.prop = mtry.prop,
+                              getImp = get.imp.r.f.raw.mtry, importance = importance)
 
   ## select variables
   dec = res.boruta$finalDecision

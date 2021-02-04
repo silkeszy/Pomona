@@ -4,9 +4,19 @@
 \alias{var.sel.boruta}
 \title{Variable selection using Boruta function.}
 \usage{
-var.sel.boruta(x, y, pValue = 0.01, maxRuns = 100, ntree = 500,
-  mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-  method = "ranger", type = "regression")
+var.sel.boruta(
+  x,
+  y,
+  pValue = 0.01,
+  maxRuns = 100,
+  ntree = 500,
+  mtry.prop = 0.2,
+  nodesize.prop = 0.1,
+  no.threads = 1,
+  method = "ranger",
+  type = "regression",
+  importance = "impurity_corrected"
+)
 }
 \arguments{
 \item{x}{matrix or data.frame of predictor variables with variables in
@@ -31,6 +41,9 @@ nodes.}
 \item{method}{implementation to be used ("ranger").}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
+
+\item{importance}{Variable importance mode ('none', 'impurity',
+'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 }
 \value{
 List with the following components:
@@ -64,4 +77,3 @@ This function selects only variables that are confirmed based on Boruta implemen
 For more details see \code{\link[Boruta]{Boruta}}.
 Note that this function uses the ranger implementation for variable selection.
 }
-
