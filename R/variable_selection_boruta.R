@@ -55,7 +55,7 @@ var.sel.boruta <- function(x, y, pValue = 0.01, maxRuns = 100,
                               pValue = pValue, maxRuns = maxRuns,
                               ntree = ntree, nodesize.prop = nodesize.prop,
                               no.threads = no.threads,mtry.prop = mtry.prop,
-                              getImp = get.imp.r.f.raw.mtry, importance = importance)
+                              getImp = get.imp.r.f.raw.mtry, importance = importance, type = type)
 
   ## select variables
   dec = res.boruta$finalDecision
