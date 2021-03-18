@@ -18,7 +18,8 @@
 #' @param type mode of prediction ("regression", "classification" or "probability").
 #' @param importance Variable importance mode ('none', 'impurity',
 #' 'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.
-#' @param ... further arguments needed for \code{\link[relVarId]{holdout.rf}} function only.
+#' @param case.weights Weights for sampling of training observations. Observations with larger weights will be selected with higher probability in the bootstrap (or subsampled) samples for the trees.
+#' @param ... further arguments needed for \code{\link[Pomona]{holdout.rf}} function only.
 #'
 #' @return An object of class \code{\link[ranger]{ranger}}.
 #'
@@ -35,7 +36,7 @@
 #'            type = "regression", method = "ranger")
 
 wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-                       method = "ranger", type = "regression", importance = "impurity_corrected",...) {
+                       method = "ranger", type = "regression", importance = "impurity_corrected", case.weights = NULL,...) {
 
   ## check data
   if (length(y) != nrow(x)) {
@@ -72,9 +73,11 @@ wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, 
     rf = ranger::ranger(data = data.frame(y, x),
                         dependent.variable.name = "y",
                         probability = prob,
-                        importance = importance, scale.permutation.importance = FALSE,
+                        importance = importance,
+                        scale.permutation.importance = FALSE,
                         num.trees = ntree,
                         mtry = mtry,
+                        case.weights = case.weights,
                         min.node.size = nodesize,
                         num.threads = no.threads,
                         write.forest = TRUE,

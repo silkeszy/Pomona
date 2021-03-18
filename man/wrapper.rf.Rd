@@ -14,6 +14,7 @@ wrapper.rf(
   method = "ranger",
   type = "regression",
   importance = "impurity_corrected",
+  case.weights = NULL,
   ...
 )
 }
@@ -40,7 +41,9 @@ nodes.}
 \item{importance}{Variable importance mode ('none', 'impurity',
 'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
 
-\item{...}{further arguments needed for \code{\link[relVarId]{holdout.rf}} function only.}
+\item{case.weights}{Weights for sampling of training observations. Observations with larger weights will be selected with higher probability in the bootstrap (or subsampled) samples for the trees.}
+
+\item{...}{further arguments needed for \code{\link[Pomona]{holdout.rf}} function only.}
 }
 \value{
 An object of class \code{\link[ranger]{ranger}}.

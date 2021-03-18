@@ -40,7 +40,7 @@
 
 var.sel.boruta <- function(x, y, pValue = 0.01, maxRuns = 100,
                           ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-                          no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected") {
+                          no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected", case.weights = NULL) {
 
   ## variable selection using Boruta function
   ## ----------------------------------------
@@ -55,7 +55,7 @@ var.sel.boruta <- function(x, y, pValue = 0.01, maxRuns = 100,
                               pValue = pValue, maxRuns = maxRuns,
                               ntree = ntree, nodesize.prop = nodesize.prop,
                               no.threads = no.threads,mtry.prop = mtry.prop,
-                              getImp = get.imp.r.f.raw.mtry, importance = importance, type = type)
+                              getImp = get.imp.r.f.raw.mtry, importance = importance, type = type, case.weights = case.weights)
 
   ## select variables
   dec = res.boruta$finalDecision
