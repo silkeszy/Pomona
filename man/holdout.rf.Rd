@@ -12,7 +12,8 @@ holdout.rf(
   nodesize.prop = 0.1,
   no.threads = 1,
   type = "regression",
-  importance = importance
+  importance = importance,
+  case.weights = NULL
 )
 }
 \arguments{

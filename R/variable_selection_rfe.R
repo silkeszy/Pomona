@@ -40,7 +40,7 @@
 #' @export
 
 var.sel.rfe <- function(x, y, prop.rm = 0.2, recalculate = TRUE, tol = 10, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1,
-                        no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected") {
+                        no.threads = 1, method = "ranger", type = "regression", importance = "impurity_corrected", case.weights = NULL) {
 
   ## importance for nested subsets
   infos = NULL
@@ -61,7 +61,7 @@ var.sel.rfe <- function(x, y, prop.rm = 0.2, recalculate = TRUE, tol = 10, ntree
     rf = wrapper.rf(x = x.sub, y = y,
                     ntree = ntree, mtry.prop = mtry.prop, nodesize.prop = nodesize.prop,
                     no.threads = no.threads,
-                    method = method, type = type, importance = importance)
+                    method = method, type = type, importance = importance, case.weights = case.weights)
 
     if (is.null(imp) | recalculate) {
       #            print("recalculating importance ...")

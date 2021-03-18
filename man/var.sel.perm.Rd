@@ -16,7 +16,8 @@ var.sel.perm(
   method = "ranger",
   type = "regression",
   parametric = FALSE,
-  importance = "impurity_corrected"
+  importance = "impurity_corrected",
+  case.weights = NULL
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ distribution) should be used (default: FALSE)}
 
 \item{importance}{Variable importance mode ('none', 'impurity',
 'impurity_corrected' or 'permutation'). Default is 'impurity_corrected'.}
+
+\item{case.weights}{Weights for sampling of training observations. Observations with larger weights will be selected with higher probability in the bootstrap (or subsampled) samples for the trees.}
 }
 \value{
 List with the following components:
