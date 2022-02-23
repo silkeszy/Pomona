@@ -1,16 +1,17 @@
 
-#' Variable selection using Boruta function.
+#' Variable selection using hybrid function.
 #'
-#' Variable selection using the Boruta function in the R package \code{\link[Boruta]{Boruta}}.
+#' Variable selection using the hybrid function and combining Vita and hybrid.
 #'
-#' This function selects only variables that are confirmed based on Boruta implementation.
-#' For more details see \code{\link[Boruta]{Boruta}}.
+#' This function selects only variables that are confirmed based on hybrid implementation.
 #' Note that this function uses the ranger implementation for variable selection.
 #'
 
 #' @inheritParams wrapper.rf
-#' @param pValue confidence level (default: 0.01 based on Boruta package)
-#' @param maxRuns maximal number of importance source runs (default: 100 based on Boruta package)
+#' @param pValue confidence level (default: 0.01 based on \code{\link[Boruta]{Boruta}} package)
+#' @param maxRuns maximal number of importance source runs (default: 100 based on \code{\link[Boruta]{Boruta}} package)
+#' @param alpha significance threshold used by Vita
+#' @param seed Seed
 #'
 #' @return List with the following components:
 #'   \itemize{
@@ -32,15 +33,16 @@
 #' data = simulation.data.cor(no.samples = 100, group.size = rep(10, 6), no.var.total = 200)
 #'
 #' # select variables
-#' res = var.sel.boruta(x = data[, -1], y = data[, 1])
+#' res = var.sel.hybrid(x = data[, -1], y = data[, 1])
 #' res$var
 #'
 #' @export
 
 
-var.sel.boruta <- function(x, y,
+var.sel.hybrid <- function(x, y,
                            pValue = 0.01,
                            maxRuns = 100,
+                           alpha = 0.05,
                            ntree = 500,
                            mtry.prop = 0.2,
                            nodesize.prop = 0.1,
@@ -48,25 +50,33 @@ var.sel.boruta <- function(x, y,
                            method = "ranger",
                            type = "regression",
                            importance = "impurity_corrected",
+                           seed = 123,
                            case.weights = NULL) {
 
   ## variable selection using Boruta function
   ## ----------------------------------------
   # modified version of getImpRfRaw function to enable user defined mtry
   # values
-  get.imp.r.f.raw.mtry <- function(x, y, ...) {
-    rf <- wrapper.rf(x = x, y = y, ...)
-    return(rf$variable.importance)
+  get_imp_ranger <- function(x, y, ...){
+    x <- data.frame(x)
+    imp <- wrapper.rf(x = x,
+                      y = y,
+                      ...)$variable.importance
+    return(imp)
   }
-
-  res.boruta = Boruta::Boruta(x = x, y = y,
-                              pValue = pValue, maxRuns = maxRuns,
-                              ntree = ntree, nodesize.prop = nodesize.prop,
-                              no.threads = no.threads,mtry.prop = mtry.prop,
-                              getImp = get.imp.r.f.raw.mtry,
-                              importance = importance,
-                              type = type,
-                              case.weights = case.weights)
+  res.boruta = hybrid(x = x, y = y,
+                      pValue = pValue,
+                      maxRuns = maxRuns,
+                      alpha = alpha,
+                      ntree = ntree,
+                      nodesize.prop = nodesize.prop,
+                      no.threads = no.threads,
+                      mtry.prop = mtry.prop,
+                      getImp = get_imp_ranger,
+                      importance = importance,
+                      seed = seed,
+                      type = type,
+                      case.weights = case.weights)
 
   ## select variables
   dec = res.boruta$finalDecision

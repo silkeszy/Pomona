@@ -12,8 +12,7 @@ holdout.rf(
   nodesize.prop = 0.1,
   no.threads = 1,
   type = "regression",
-  importance = importance,
-  case.weights = NULL
+  importance = importance
 )
 }
 \arguments{
@@ -33,6 +32,8 @@ nodes.}
 \item{no.threads}{number of threads used for parallel execution.}
 
 \item{type}{mode of prediction ("regression", "classification" or "probability").}
+
+\item{importance}{See \code{\link[ranger]{ranger}} for details.}
 }
 \value{
 Hold-out random forests with variable importance

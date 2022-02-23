@@ -35,8 +35,14 @@
 #' wrapper.rf(x = data[, -1], y = data[, 1],
 #'            type = "regression", method = "ranger")
 
-wrapper.rf <- function(x, y, ntree = 500, mtry.prop = 0.2, nodesize.prop = 0.1, no.threads = 1,
-                       method = "ranger", type = "regression", importance = "impurity_corrected", case.weights = NULL,...) {
+wrapper.rf <- function(x, y, ntree = 500,
+                       mtry.prop = 0.2,
+                       nodesize.prop = 0.1,
+                       no.threads = 1,
+                       method = "ranger",
+                       type = "regression",
+                       importance = "impurity_corrected",
+                       case.weights = NULL, ...) {
 
   ## check data
   if (length(y) != nrow(x)) {

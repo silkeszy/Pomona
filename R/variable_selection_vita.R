@@ -74,6 +74,7 @@ var.sel.vita <- function(x, y, p.t = 0.05,
 #'   nodes.
 #' @param no.threads number of threads used for parallel execution.
 #' @param type mode of prediction ("regression", "classification" or "probability").
+#' @param importance See \code{\link[ranger]{ranger}} for details.
 #'
 #' @return Hold-out random forests with variable importance
 #'
