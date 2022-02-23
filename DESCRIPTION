@@ -2,8 +2,11 @@ Package: Pomona
 Title: Identification of relevant variables in omics data sets using Random
     Forests
 Version: 1.0.2
-Authors@R: person("Silke", "Szymczak", email = "szymczak@medinfo.uni-kiel.de",
+Authors@R: 
+    person("Silke", "Szymczak", email = "silke.szymczak@uni-luebeck.de",
   role = c("aut", "cre"))
+  person("Cesaire", "Fouodo", email = "cesaire.kuetefouodo@uni-luebeck.de",
+  role = c("cre"))
 Description: This package provides different methods for identifying relevant
     variables in omics data sets using Random Forests. It implements the following
     approaches: empirical and parametric permutation (Altmann), Boruta, Vita,
