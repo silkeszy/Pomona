@@ -1,6 +1,6 @@
-[![Travis Build Status](https://travis-ci.org/Pomona.svg?branch=master)](https://travis-ci.org/Pomona)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Pomona?branch=master&svg=true)](https://ci.appveyor.com/project/Ponoma)
-[![Coverage Status](https://coveralls.io/repos/github/Pomona/badge.svg?branch=master)](https://coveralls.io/github/Pomona?branch=master)
+[![Travis Build Status](https://travis-ci.org/silkeszy/Pomona.svg?branch=master)](https://travis-ci.org/silkeszy/Pomona)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/silkeszy/Pomona?branch=master&svg=true)](https://ci.appveyor.com/project/silkeszy/Ponoma)
+[![Coverage Status](https://coveralls.io/repos/github/silkeszy/Pomona/badge.svg?branch=master)](https://coveralls.io/github/silkeszy/Pomona?branch=master)
 ## Pomona
 Silke Szymczak and Cesaire J.K. Fouodo
 
