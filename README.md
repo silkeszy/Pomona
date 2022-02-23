@@ -1,8 +1,8 @@
-[![Travis Build Status](https://travis-ci.com/silkeszy/Pomona.svg?branch=master)](https://travis-ci.com/imbs-hl/Pomona)
+[![Travis Build Status](https://travis-ci.org/silkeszy/Pomona.svg?branch=master)](https://travis-ci.org/imbs-hl/Pomona)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/silkeszy/Pomona?branch=master&svg=true)](https://ci.appveyor.com/project/fouodo/Ponoma)
 [![Coverage Status](https://coveralls.io/repos/github/silkeszy/Pomona/badge.svg?branch=master)](https://coveralls.io/github/silkeszy/Pomona?branch=master)
 ## Pomona
-Cesaire J. K. Fouodo
+Silke Szymczak
 
 ### Introduction
 This package provides different methods for identifying relevant
