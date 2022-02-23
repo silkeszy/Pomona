@@ -2,7 +2,7 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/silkeszy/Pomona?branch=master&svg=true)](https://ci.appveyor.com/project/fouodo/Ponoma)
 [![Coverage Status](https://coveralls.io/repos/github/silkeszy/Pomona/badge.svg?branch=master)](https://coveralls.io/github/silkeszy/Pomona?branch=master)
 ## Pomona
-Silke Szymczak
+Silke Szymczak and Cesaire J.K. Fouodo
 
 ### Introduction
 This package provides different methods for identifying relevant
