@@ -41,7 +41,7 @@ You may increase it to resolve attributes left Tentative.}
 \item{doTrace}{verbosity level. 0 means no tracing, 1 means reporting decision about each attribute as soon as it is justified, 2 means the same as 1, plus reporting each importance source run, 3 means the same as 2, plus reporting of hits assigned to yet undecided attributes.}
 
 \item{holdHistory}{if set to \code{TRUE}, the full history of importance is stored and returned as the \code{ImpHistory} element of the result.
-Can be used to decrease a memory footprint of hybrid in case this side data is not used, especially when the number of attributes is huge; yet it disables plotting of such made \code{hybrid} objects and the use of the \code{\link{TentativeRoughFix}} function.}
+Can be used to decrease a memory footprint of hybrid in case this side data is not used, especially when the number of attributes is huge; yet it disables plotting of such made \code{hybrid} objects and the use of the \code{\link[Boruta]{TentativeRoughFix}} function.}
 
 \item{getImp}{function used to obtain attribute importance.
 The default is get_imp_ranger, which runs random forest from the \code{ranger} package and gathers Z-scores of corrected impurities.
@@ -83,7 +83,7 @@ Algorithm stops when only Confirmed attributes are left, or when it reaches \cod
 If the second scenario occurs, some attributes may be left without a decision.
 They are claimed Tentative.
 You may try to extend \code{maxRuns} or lower \code{pValue} to clarify them, but in some cases their importances do fluctuate too much for hybrid to converge.
-Instead, you can use \code{\link{TentativeRoughFix}} function, which will perform other, weaker test to make a final decision, or simply treat them as undecided in further analysis.
+Instead, you can use \code{\link[Boruta]{TentativeRoughFix}} function, which will perform other, weaker test to make a final decision, or simply treat them as undecided in further analysis.
 }
 \examples{
 set.seed(777)

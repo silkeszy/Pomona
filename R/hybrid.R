@@ -23,7 +23,7 @@ hybrid <- function(x,...)
 #' @param maxRuns maximal number of importance source runs.
 #' You may increase it to resolve attributes left Tentative.
 #' @param holdHistory if set to \code{TRUE}, the full history of importance is stored and returned as the \code{ImpHistory} element of the result.
-#' Can be used to decrease a memory footprint of hybrid in case this side data is not used, especially when the number of attributes is huge; yet it disables plotting of such made \code{hybrid} objects and the use of the \code{\link{TentativeRoughFix}} function.
+#' Can be used to decrease a memory footprint of hybrid in case this side data is not used, especially when the number of attributes is huge; yet it disables plotting of such made \code{hybrid} objects and the use of the \code{\link[Boruta]{TentativeRoughFix}} function.
 #' @param doTrace verbosity level. 0 means no tracing, 1 means reporting decision about each attribute as soon as it is justified, 2 means the same as 1, plus reporting each importance source run, 3 means the same as 2, plus reporting of hits assigned to yet undecided attributes.
 #' @param alpha significance threshold used by Vita
 #' @param seed Seed
@@ -46,7 +46,7 @@ hybrid <- function(x,...)
 #' If the second scenario occurs, some attributes may be left without a decision.
 #' They are claimed Tentative.
 #' You may try to extend \code{maxRuns} or lower \code{pValue} to clarify them, but in some cases their importances do fluctuate too much for hybrid to converge.
-#' Instead, you can use \code{\link{TentativeRoughFix}} function, which will perform other, weaker test to make a final decision, or simply treat them as undecided in further analysis.
+#' Instead, you can use \code{\link[Boruta]{TentativeRoughFix}} function, which will perform other, weaker test to make a final decision, or simply treat them as undecided in further analysis.
 #' @references
 #' Nembrini, S., Koenig, I. R. & Wright, M. N. (2018). The revival of the Gini Importance? Bioinformatics. https://doi.org/10.1093/bioinformatics/bty373.
 #' Janitza, S, Celik, E, Boulesteix, AL. (2018). A computationally fast variable importance test for random forests for high-dimensional data. Adv Data Anal Classif.; doi.org: 10.1007/s11634-016-0276-4
@@ -308,7 +308,7 @@ hybrid.formula<-function(formula,data=.GlobalEnv,...){
 #' @return Invisible copy of \code{x}.
 #' @export
 print.hybrid <- function(x,...){
-  if(class(x)!='hybrid') stop("This is NOT a hybrid object!")
+  if(!is(x, 'hybrid')) stop("This is NOT a hybrid object!")
   cat(paste('hybrid performed ',dim(x$ImpHistory)[1],' iterations in ',format(x$timeTaken),'.\n',sep=''))
   if(x$roughfixed) cat(paste('Tentatives roughfixed over the last ',x$averageOver,' iterations.\n',sep=''))
   if(sum(x$finalDecision=='Confirmed')==0){

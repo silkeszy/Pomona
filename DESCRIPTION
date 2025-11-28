@@ -22,5 +22,5 @@ Imports:
     methods
 License: GPL-3
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
